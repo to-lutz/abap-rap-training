@@ -1,0 +1,25 @@
+@AbapCatalog.viewEnhancementCategory: [ #NONE ]
+
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+
+@EndUserText.label: 'Movie App'
+
+@Metadata.ignorePropagatedAnnotations: true
+
+define view entity ZI_22_GenreText
+  as select from DDCDS_CUSTOMER_DOMAIN_VALUE_T(
+                   p_domain_name : 'ZABAP_GENRE')
+
+{
+  key domain_name,
+  key value_position,
+  key language,
+
+      value_low       as Genre,
+
+      @EndUserText.label: 'Genre Text'
+      @EndUserText.quickInfo: 'Genre Text'
+      text            as GenreText
+}
+
+where language = $session.system_language

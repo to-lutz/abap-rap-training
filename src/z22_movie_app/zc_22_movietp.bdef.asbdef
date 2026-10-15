@@ -1,0 +1,19 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_22_MovieTP alias Movie
+{
+  use create;
+  use update;
+
+  use action rate_movie;
+
+  use association _Ratings { create; }
+}
+
+define behavior for ZC_22_RatingTP alias Rating
+{
+  use delete;
+
+  use association _Movie;
+}
